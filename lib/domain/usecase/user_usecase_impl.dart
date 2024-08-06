@@ -1,6 +1,7 @@
 import 'package:acote_assignment/core/user_usecase.dart';
 import 'package:acote_assignment/data/repository/user_repo_impl.dart';
 import 'package:acote_assignment/domain/model/data_state_model.dart';
+import 'package:acote_assignment/domain/model/repo_model.dart';
 import 'package:acote_assignment/domain/model/user_model.dart';
 import 'package:acote_assignment/domain/respository/user_repo.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,8 +22,7 @@ class UserUsecaseImpl implements UserUsecase {
   }
 
   @override
-  Future fetchUserRepo(name) {
-    // TODO: implement fetchUserRepo
-    throw UnimplementedError();
+  Future<DataState<List<RepoModel>>> fetchUserRepo(dynamic name) {
+    return _userRepository.fetchUserRepo(name);
   }
 }
