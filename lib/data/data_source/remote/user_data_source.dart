@@ -16,4 +16,11 @@ class UserDataSource {
     final List result = json.decode(response.body);
     return result;
   }
+
+  Future<List> fetchUserRepo(String userName) async {
+    final http.Response response = await http
+        .get(Uri.parse("https://api.github.com/users/$userName/repos"));
+    final List result = json.decode(response.body);
+    return result;
+  }
 }
