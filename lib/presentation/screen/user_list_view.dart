@@ -1,5 +1,7 @@
 import 'package:acote_assignment/domain/model/user_model.dart';
+import 'package:acote_assignment/presentation/screen/user_detail_view.dart';
 import 'package:acote_assignment/presentation/view_model/user_vm.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,7 +52,7 @@ class _UserListViewState extends ConsumerState<UserListView> {
     );
   }
 
-  Widget _buildBody(RemoteFetchUserState state) {
+  Widget _buildBody(RemoteUserState state) {
     if (state is RemoteFetchUserLoading) {
       return const Center(child: CircularProgressIndicator());
     } else if (state is RemoteFetchUserError) {
@@ -76,12 +78,26 @@ class _UserListViewState extends ConsumerState<UserListView> {
               await launchUrl(url);
             },
             child: Container(
+              height: 60,
               margin: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.network('https://placehold.it/500x100?text=ad'),
+              child: CachedNetworkImage(
+                imageUrl: 'https://placehold.it/500x100?text=ad',
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                fit: BoxFit.fitWidth,
+              ),
             ),
           );
         }
         return ListTile(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        UserDetailView(userModel: users[index])));
+          },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(users[index].avatarUrl),
           ),
