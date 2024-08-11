@@ -1,3 +1,9 @@
+const List errorResult = [
+  {
+    "code": "err",
+  }
+];
+
 const List fetchUserResult = [
   {
     "login": "technoweenie",
