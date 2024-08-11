@@ -1,25 +1,25 @@
 part of 'user_vm.dart';
 
-abstract class RemoteFetchUserState {
-  const RemoteFetchUserState();
+abstract class RemoteUserState {
+  const RemoteUserState();
 }
 
-class RemoteFetchUserInitial extends RemoteFetchUserState {
+class RemoteFetchUserInitial extends RemoteUserState {
   const RemoteFetchUserInitial();
 }
 
-class RemoteFetchUserLoading extends RemoteFetchUserState {
+class RemoteFetchUserLoading extends RemoteUserState {
   const RemoteFetchUserLoading();
 }
 
-class RemoteFetchUserSuccess extends RemoteFetchUserState {
+class RemoteFetchUserSuccess extends RemoteUserState {
   final List<UserModel> userInfo;
   final bool isLoadingMore;
 
   RemoteFetchUserSuccess({required this.userInfo, this.isLoadingMore = false});
 }
 
-class RemoteFetchUserError extends RemoteFetchUserState {
+class RemoteFetchUserError extends RemoteUserState {
   final String message;
 
   RemoteFetchUserError(this.message);
