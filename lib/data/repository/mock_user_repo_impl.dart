@@ -1,5 +1,4 @@
 import 'package:acote_assignment/data/data_source/mock/mock_data_source.dart';
-import 'package:acote_assignment/data/data_source/remote/user_data_source.dart';
 import 'package:acote_assignment/data/dto/repo_dto.dart';
 import 'package:acote_assignment/data/dto/user_dto.dart';
 import 'package:acote_assignment/data/translator/translator.dart';
@@ -10,6 +9,7 @@ import 'package:acote_assignment/domain/respository/user_repo.dart';
 
 class MockUserRepoImpl implements UserRepo {
   MockDataSource dataSource = MockDataSource();
+
   @override
   Future<DataState<List<UserModel>>> fetchUser(int since) async {
     try {
