@@ -43,32 +43,15 @@ void main() {
 
     expect(find.byType(ListTile), findsWidgets);
 
-    // final listFinder = find.byType(Scrollable);
-    // final itemFinder =
-    //     find.byKey(ValueKey('${find.byType(ListTile).evaluate().last}_item'));
-    // final lastItemFinder = find.byType(ListTile).last;
-
-    // // Scroll until the item to be found appears.
-    // await tester.scrollUntilVisible(
-    //   lastItemFinder,
-    //   300.0,
-    //   scrollable: listFinder,
-    // );
-
     // 페이지네이션 동작 진행 전의 리스트의 개수와 동작 진행 후의 리스트 개수를 비교하여 페이지네이션 동작 유무 판별 진행
     final initialItemCount = find.byType(ListTile).evaluate().length;
     final scrollController = tester
         .widget<Scrollable>(find.byType(Scrollable))
         .controller as ScrollController;
 
-    // // Scroll to the end of the list
     scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
     await tester.drag(find.byType(ListView), const Offset(0, -300));
-    await tester.pumpAndSettle(const Duration(seconds: 10));
-
-    // 다시 스크롤
-    // scrollController.jumpTo(scrollController.position.maxScrollExtent);
     await tester.pumpAndSettle(const Duration(seconds: 10));
 
     final newItemCount = find.byType(ListTile).evaluate().length;
